@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card'
-import { Star, ShoppingCart, Briefcase, TrendingUp } from 'lucide-react'
+import { Star, ShoppingCart, Briefcase, TrendingUp, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 
 const ServicesOverview = () => {
@@ -28,6 +28,12 @@ const ServicesOverview = () => {
       description: 'Strengthen your employer brand and attract top talent through positive Glassdoor reviews.',
       href: '/reviews/employer',
     },
+    {
+      icon: BookOpen,
+      title: 'Academic Writing Support',
+      description: 'Professional academic writing assistance for essays, research papers, and more. Expert support with quick turnaround times.',
+      href: '/academic-writing',
+    },
   ]
 
   return (
@@ -40,7 +46,7 @@ const ServicesOverview = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
             return (
