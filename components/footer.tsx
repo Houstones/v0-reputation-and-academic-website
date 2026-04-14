@@ -76,7 +76,7 @@ const Footer = () => {
                 href="https://wa.me/18439657071"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
+                className="text-white hover:text-white/80 transition-colors"
                 aria-label="WhatsApp"
               >
                 <MessageCircle size={20} />
@@ -85,7 +85,7 @@ const Footer = () => {
                 href="https://www.instagram.com/remote_minds?igsh=MWxpMWhhNmlxOHprbQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
+                className="text-white hover:text-white/80 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
