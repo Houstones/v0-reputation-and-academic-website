@@ -69,7 +69,7 @@ const Footer = () => {
         <div className="border-t border-accent-foreground/20 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <p className="text-sm opacity-90">
-              © 2024 Remote Minds Solutions. All rights reserved.
+              © 2026 Remote Minds Solutions. All rights reserved.
             </p>
             <div className="flex justify-center md:justify-end gap-6">
               <a
