@@ -18,7 +18,7 @@ const HeroSection = () => {
             </Button>
           </Link>
           <Link href="/academic-writing">
-            <Button size="lg" variant="outline" className="w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground transition-colors duration-200">
               Academic Writing
             </Button>
           </Link>
