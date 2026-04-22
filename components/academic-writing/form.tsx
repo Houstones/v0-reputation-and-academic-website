@@ -58,8 +58,14 @@ const AcademicWritingForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate required fields
+    if (!formData.subject || !formData.deadline || !formData.pages || !formData.sources || !formData.formatting || !formData.name || !formData.email || !formData.description) {
+      alert('Please fill in all required fields')
+      return
+    }
+    
     setLoading(true)
-    console.log('[v0] Form submission started with data:', formData)
 
     try {
       const formDataToSend = new FormData()
@@ -79,16 +85,11 @@ const AcademicWritingForm = () => {
       files.forEach((file) => {
         formDataToSend.append('files', file)
       })
-      console.log('[v0] FormData prepared with', files.length, 'files')
 
       const response = await fetch('/api/academic-writing', {
         method: 'POST',
         body: formDataToSend,
       })
-      
-      console.log('[v0] API Response status:', response.status)
-      const responseData = await response.json()
-      console.log('[v0] API Response data:', responseData)
 
       if (response.ok) {
         setSubmitStatus('success')
@@ -109,7 +110,7 @@ const AcademicWritingForm = () => {
         setTimeout(() => setSubmitStatus('idle'), 5000)
       }
     } catch (error) {
-      console.error('[v0] Form submission error:', error)
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
@@ -295,8 +296,8 @@ const AcademicWritingForm = () => {
         {/* Submit Button */}
         <Button
           type="submit"
-          disabled={loading || !formData.subject || !formData.deadline || !formData.pages || !formData.formatting || !formData.name || !formData.email}
-          className="w-full"
+          disabled={loading}
+          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-colors"
           size="lg"
         >
           {loading ? 'Submitting...' : 'Submit Request'}

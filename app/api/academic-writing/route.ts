@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
   try {
     // Check if environment variables are set
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.error('[v0] Email credentials not configured')
       return NextResponse.json(
         { error: 'Email service not configured. Please contact the administrator.' },
         { status: 500 }
@@ -32,8 +31,6 @@ export async function POST(request: NextRequest) {
     const name = formData.get('name')
     const email = formData.get('email')
     const totalCost = formData.get('totalCost')
-    
-    console.log('[v0] Academic writing request received:', { name, subject, pages })
 
     // Build email content
     const emailContent = `
@@ -81,8 +78,6 @@ Files attached in separate transmission.
       text: emailContent,
       attachments: files,
     })
-    
-    console.log('[v0] Email sent to business:', mailResponse.messageId)
 
     // Also send confirmation to client
     await transporter.sendMail({
@@ -91,21 +86,15 @@ Files attached in separate transmission.
       subject: 'We Received Your Academic Writing Request',
       text: `Hi ${name},\n\nThank you for submitting your academic writing request. We've received your submission and will review it shortly.\n\nRequest Details:\n- Subject: ${subject}\n- Pages: ${pages}\n- Deadline: ${deadline}\n- Estimated Cost: $${totalCost}\n\nWe'll contact you soon via WhatsApp or email to confirm details and proceed.\n\nBest regards,\nRemote Minds Solutions\nWhatsApp: https://wa.me/18439657071\nEmail: houston@remotemindssolutions.com`,
     })
-    
-    console.log('[v0] Confirmation email sent to client')
 
     return NextResponse.json(
       { message: 'Request submitted successfully' },
       { status: 200 }
     )
   } catch (error) {
-    console.error('[v0] Email submission error:', error)
-    if (error instanceof Error) {
-      console.error('[v0] Error message:', error.message)
-      console.error('[v0] Error stack:', error.stack)
-    }
+    console.error('Form submission error:', error)
     return NextResponse.json(
-      { error: 'Failed to submit request', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to submit request' },
       { status: 500 }
     )
   }
