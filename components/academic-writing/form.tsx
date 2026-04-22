@@ -59,12 +59,17 @@ const AcademicWritingForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Debug: Log all form data to see what's empty
+    console.log('[v0] Form data:', formData)
+    
     // Validate required fields
     if (!formData.subject || !formData.deadline || !formData.pages || !formData.sources || !formData.formatting || !formData.name || !formData.email || !formData.description) {
+      console.log('[v0] Validation failed - Missing fields')
       alert('Please fill in all required fields')
       return
     }
     
+    console.log('[v0] Validation passed, submitting form')
     setLoading(true)
 
     try {
@@ -258,7 +263,6 @@ const AcademicWritingForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="Your name"
-                required
               />
             </div>
 
@@ -270,7 +274,6 @@ const AcademicWritingForm = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="your@email.com"
-                required
               />
             </div>
           </div>
