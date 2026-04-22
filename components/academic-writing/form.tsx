@@ -120,7 +120,7 @@ const AcademicWritingForm = () => {
 
   return (
     <Card className="p-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} noValidate className="space-y-6">
         {/* Status Messages */}
         {submitStatus === 'success' && (
           <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
@@ -160,7 +160,6 @@ const AcademicWritingForm = () => {
               name="deadline"
               value={formData.deadline}
               onChange={handleInputChange}
-              required
             />
           </div>
 
@@ -174,7 +173,6 @@ const AcademicWritingForm = () => {
               value={formData.pages}
               onChange={handleInputChange}
               placeholder="Enter number of pages"
-              required
             />
             {formData.pages && (
               <p className="text-sm text-primary font-semibold">
@@ -193,7 +191,6 @@ const AcademicWritingForm = () => {
               value={formData.sources}
               onChange={handleInputChange}
               placeholder="Enter number of sources"
-              required
             />
           </div>
 
@@ -223,7 +220,6 @@ const AcademicWritingForm = () => {
             onChange={handleInputChange}
             placeholder="Provide details about your assignment..."
             className="min-h-32"
-            required
           />
         </div>
 
