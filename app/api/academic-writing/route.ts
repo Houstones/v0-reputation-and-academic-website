@@ -99,9 +99,13 @@ Files attached in separate transmission.
       { status: 200 }
     )
   } catch (error) {
-    console.error('Email submission error:', error)
+    console.error('[v0] Email submission error:', error)
+    if (error instanceof Error) {
+      console.error('[v0] Error message:', error.message)
+      console.error('[v0] Error stack:', error.stack)
+    }
     return NextResponse.json(
-      { error: 'Failed to submit request' },
+      { error: 'Failed to submit request', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }

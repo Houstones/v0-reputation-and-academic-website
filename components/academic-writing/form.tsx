@@ -59,6 +59,7 @@ const AcademicWritingForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    console.log('[v0] Form submission started with data:', formData)
 
     try {
       const formDataToSend = new FormData()
@@ -78,11 +79,16 @@ const AcademicWritingForm = () => {
       files.forEach((file) => {
         formDataToSend.append('files', file)
       })
+      console.log('[v0] FormData prepared with', files.length, 'files')
 
       const response = await fetch('/api/academic-writing', {
         method: 'POST',
         body: formDataToSend,
       })
+      
+      console.log('[v0] API Response status:', response.status)
+      const responseData = await response.json()
+      console.log('[v0] API Response data:', responseData)
 
       if (response.ok) {
         setSubmitStatus('success')
@@ -103,7 +109,7 @@ const AcademicWritingForm = () => {
         setTimeout(() => setSubmitStatus('idle'), 5000)
       }
     } catch (error) {
-      console.error('Form submission error:', error)
+      console.error('[v0] Form submission error:', error)
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
