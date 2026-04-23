@@ -53,37 +53,37 @@ const AcademicWritingForm = () => {
       return
     }
     
-    // Create formatted email body
-    const emailBody = `New Academic Writing Request
+    // Create formatted WhatsApp message
+    const whatsappMessage = `*NEW ACADEMIC WRITING REQUEST*
 
-Student Name: ${name}
-Student Email: ${email}
+*Student Information:*
+Name: ${name}
+Email: ${email}
 
-ASSIGNMENT DETAILS:
+*Assignment Details:*
 Subject: ${subject}
 Deadline: ${deadline}
-Number of Pages: ${pages}
-Number of Cited Sources: ${sources}
-Formatting Style: ${formatting}
+Pages: ${pages}
+Cited Sources: ${sources}
+Formatting: ${formatting}
 Estimated Cost: $${totalCost}
 
-DESCRIPTION:
+*Description:*
 ${description}
 
+Files: ${files.length > 0 ? files.map(f => f.name).join(', ') : 'None'}
+
 ---
-Files attached: ${files.length > 0 ? files.map(f => f.name).join(', ') : 'None'}
+Sent via Remote Minds Academic Writing Form`
 
-Please reply to this email to confirm the request.`
-
-    // Encode the email body for the mailto link
-    const encodedBody = encodeURIComponent(emailBody)
-    const subject_line = encodeURIComponent(`Academic Writing Request - ${subject} (${pages} pages)`)
+    // Encode the message for WhatsApp
+    const encodedMessage = encodeURIComponent(whatsappMessage)
     
-    // Create mailto link
-    const mailtoLink = `mailto:houston@remotemindssolutions.com?subject=${subject_line}&body=${encodedBody}`
+    // Create WhatsApp link (using the number: 18439657071)
+    const whatsappLink = `https://wa.me/18439657071?text=${encodedMessage}`
     
-    // Open email client
-    window.location.href = mailtoLink
+    // Open WhatsApp
+    window.open(whatsappLink, '_blank')
   }
 
   return (
@@ -246,6 +246,13 @@ Please reply to this email to confirm the request.`
         >
           Submit Request
         </Button>
+
+        {/* Disclaimer */}
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            ℹ️ All submissions will be sent to WhatsApp for review. You'll be redirected to WhatsApp Web to complete sending your request.
+          </p>
+        </div>
 
         <p className="text-xs text-foreground/60 text-center">
           All submissions will be sent to houston@remotemindssolutions.com for review
