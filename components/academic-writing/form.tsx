@@ -38,8 +38,17 @@ const AcademicWritingForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate all fields
-    if (!subject || !deadline || !pages || !sources || !formatting || !name || !email || !description) {
+    // Validate all fields - check for empty strings, not falsy values
+    if (
+      subject === '' || 
+      deadline === '' || 
+      pages === '' || 
+      sources === '' || 
+      formatting === '' || 
+      name === '' || 
+      email === '' || 
+      description === ''
+    ) {
       alert('Please fill in all required fields')
       return
     }
