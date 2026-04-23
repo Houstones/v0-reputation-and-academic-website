@@ -59,17 +59,22 @@ const AcademicWritingForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Debug: Log all form data to see what's empty
-    console.log('[v0] Form data:', formData)
+    // Check each field and report which ones are missing
+    const missingFields = []
+    if (!formData.subject) missingFields.push('Subject')
+    if (!formData.deadline) missingFields.push('Deadline')
+    if (!formData.pages) missingFields.push('Number of Pages')
+    if (!formData.sources) missingFields.push('Number of Cited Sources')
+    if (!formData.formatting) missingFields.push('Formatting Style')
+    if (!formData.name) missingFields.push('Name')
+    if (!formData.email) missingFields.push('Email')
+    if (!formData.description) missingFields.push('Assignment Description')
     
-    // Validate required fields
-    if (!formData.subject || !formData.deadline || !formData.pages || !formData.sources || !formData.formatting || !formData.name || !formData.email || !formData.description) {
-      console.log('[v0] Validation failed - Missing fields')
-      alert('Please fill in all required fields')
+    if (missingFields.length > 0) {
+      alert(`Please fill in the following required fields:\n\n${missingFields.join('\n')}`)
       return
     }
     
-    console.log('[v0] Validation passed, submitting form')
     setLoading(true)
 
     try {
