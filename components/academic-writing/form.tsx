@@ -17,38 +17,19 @@ import { Textarea } from '@/components/ui/textarea'
 const COST_PER_PAGE = 8
 
 const AcademicWritingForm = () => {
-  const [formData, setFormData] = useState({
-    subject: '',
-    deadline: '',
-    pages: '',
-    sources: '',
-    formatting: '',
-    description: '',
-    name: '',
-    email: '',
-  })
+  const [subject, setSubject] = useState('')
+  const [deadline, setDeadline] = useState('')
+  const [pages, setPages] = useState('')
+  const [sources, setSources] = useState('')
+  const [formatting, setFormatting] = useState('')
+  const [description, setDescription] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [files, setFiles] = useState<File[]>([])
   const [loading, setLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const totalCost = formData.pages ? parseInt(formData.pages) * COST_PER_PAGE : 0
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  const totalCost = pages ? parseInt(pages) * COST_PER_PAGE : 0
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -59,19 +40,9 @@ const AcademicWritingForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Check each field and report which ones are missing
-    const missingFields = []
-    if (!formData.subject) missingFields.push('Subject')
-    if (!formData.deadline) missingFields.push('Deadline')
-    if (!formData.pages) missingFields.push('Number of Pages')
-    if (!formData.sources) missingFields.push('Number of Cited Sources')
-    if (!formData.formatting) missingFields.push('Formatting Style')
-    if (!formData.name) missingFields.push('Name')
-    if (!formData.email) missingFields.push('Email')
-    if (!formData.description) missingFields.push('Assignment Description')
-    
-    if (missingFields.length > 0) {
-      alert(`Please fill in the following required fields:\n\n${missingFields.join('\n')}`)
+    // Validate all fields
+    if (!subject || !deadline || !pages || !sources === undefined || !formatting || !name || !email || !description) {
+      alert('Please fill in all required fields')
       return
     }
     
@@ -80,18 +51,16 @@ const AcademicWritingForm = () => {
     try {
       const formDataToSend = new FormData()
       
-      // Add text fields
-      formDataToSend.append('subject', formData.subject)
-      formDataToSend.append('deadline', formData.deadline)
-      formDataToSend.append('pages', formData.pages)
-      formDataToSend.append('sources', formData.sources)
-      formDataToSend.append('formatting', formData.formatting)
-      formDataToSend.append('description', formData.description)
-      formDataToSend.append('name', formData.name)
-      formDataToSend.append('email', formData.email)
+      formDataToSend.append('subject', subject)
+      formDataToSend.append('deadline', deadline)
+      formDataToSend.append('pages', pages)
+      formDataToSend.append('sources', sources)
+      formDataToSend.append('formatting', formatting)
+      formDataToSend.append('description', description)
+      formDataToSend.append('name', name)
+      formDataToSend.append('email', email)
       formDataToSend.append('totalCost', totalCost.toString())
 
-      // Add files
       files.forEach((file) => {
         formDataToSend.append('files', file)
       })
@@ -103,16 +72,14 @@ const AcademicWritingForm = () => {
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({
-          subject: '',
-          deadline: '',
-          pages: '',
-          sources: '',
-          formatting: '',
-          description: '',
-          name: '',
-          email: '',
-        })
+        setSubject('')
+        setDeadline('')
+        setPages('')
+        setSources('')
+        setFormatting('')
+        setDescription('')
+        setName('')
+        setEmail('')
         setFiles([])
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
@@ -139,7 +106,7 @@ const AcademicWritingForm = () => {
         )}
         {submitStatus === 'error' && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-            There was an error submitting your request. Please try again or contact us directly.
+            There was an error submitting your request. Please try again.
           </div>
         )}
 
@@ -147,7 +114,7 @@ const AcademicWritingForm = () => {
           {/* Subject */}
           <div className="space-y-2">
             <Label htmlFor="subject">Subject *</Label>
-            <Select value={formData.subject} onValueChange={(value) => handleSelectChange('subject', value)}>
+            <Select value={subject} onValueChange={setSubject}>
               <SelectTrigger>
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
@@ -167,9 +134,8 @@ const AcademicWritingForm = () => {
             <Label htmlFor="deadline">Deadline *</Label>
             <Input
               type="datetime-local"
-              name="deadline"
-              value={formData.deadline}
-              onChange={handleInputChange}
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
 
@@ -178,13 +144,12 @@ const AcademicWritingForm = () => {
             <Label htmlFor="pages">Number of Pages *</Label>
             <Input
               type="number"
-              name="pages"
               min="1"
-              value={formData.pages}
-              onChange={handleInputChange}
+              value={pages}
+              onChange={(e) => setPages(e.target.value)}
               placeholder="Enter number of pages"
             />
-            {formData.pages && (
+            {pages && (
               <p className="text-sm text-primary font-semibold">
                 Estimated Cost: ${totalCost}
               </p>
@@ -196,10 +161,9 @@ const AcademicWritingForm = () => {
             <Label htmlFor="sources">Number of Cited Sources *</Label>
             <Input
               type="number"
-              name="sources"
               min="0"
-              value={formData.sources}
-              onChange={handleInputChange}
+              value={sources}
+              onChange={(e) => setSources(e.target.value)}
               placeholder="Enter number of sources"
             />
           </div>
@@ -207,7 +171,7 @@ const AcademicWritingForm = () => {
           {/* Formatting Style */}
           <div className="space-y-2">
             <Label htmlFor="formatting">Formatting Style *</Label>
-            <Select value={formData.formatting} onValueChange={(value) => handleSelectChange('formatting', value)}>
+            <Select value={formatting} onValueChange={setFormatting}>
               <SelectTrigger>
                 <SelectValue placeholder="Select formatting style" />
               </SelectTrigger>
@@ -225,9 +189,8 @@ const AcademicWritingForm = () => {
         <div className="space-y-2">
           <Label htmlFor="description">Assignment Description/Requirements *</Label>
           <Textarea
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Provide details about your assignment..."
             className="min-h-32"
           />
@@ -264,9 +227,8 @@ const AcademicWritingForm = () => {
               <Label htmlFor="name">Full Name *</Label>
               <Input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
               />
             </div>
@@ -275,9 +237,8 @@ const AcademicWritingForm = () => {
               <Label htmlFor="email">Email Address *</Label>
               <Input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
               />
             </div>
@@ -285,7 +246,7 @@ const AcademicWritingForm = () => {
         </div>
 
         {/* Cost Summary */}
-        {formData.pages && (
+        {pages && (
           <div className="bg-primary/10 p-4 rounded-lg">
             <div className="flex justify-between items-center">
               <span className="font-semibold">Total Estimated Cost:</span>
