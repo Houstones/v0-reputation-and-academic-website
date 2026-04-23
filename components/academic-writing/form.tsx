@@ -26,8 +26,6 @@ const AcademicWritingForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [files, setFiles] = useState<File[]>([])
-  const [loading, setLoading] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const totalCost = pages ? parseInt(pages) * COST_PER_PAGE : 0
 
@@ -37,78 +35,51 @@ const AcademicWritingForm = () => {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
     // Validate all fields
-    if (!subject || !deadline || !pages || !sources === undefined || !formatting || !name || !email || !description) {
+    if (!subject || !deadline || !pages || !sources || !formatting || !name || !email || !description) {
       alert('Please fill in all required fields')
       return
     }
     
-    setLoading(true)
+    // Create formatted email body
+    const emailBody = `New Academic Writing Request
 
-    try {
-      const formDataToSend = new FormData()
-      
-      formDataToSend.append('subject', subject)
-      formDataToSend.append('deadline', deadline)
-      formDataToSend.append('pages', pages)
-      formDataToSend.append('sources', sources)
-      formDataToSend.append('formatting', formatting)
-      formDataToSend.append('description', description)
-      formDataToSend.append('name', name)
-      formDataToSend.append('email', email)
-      formDataToSend.append('totalCost', totalCost.toString())
+Student Name: ${name}
+Student Email: ${email}
 
-      files.forEach((file) => {
-        formDataToSend.append('files', file)
-      })
+ASSIGNMENT DETAILS:
+Subject: ${subject}
+Deadline: ${deadline}
+Number of Pages: ${pages}
+Number of Cited Sources: ${sources}
+Formatting Style: ${formatting}
+Estimated Cost: $${totalCost}
 
-      const response = await fetch('/api/academic-writing', {
-        method: 'POST',
-        body: formDataToSend,
-      })
+DESCRIPTION:
+${description}
 
-      if (response.ok) {
-        setSubmitStatus('success')
-        setSubject('')
-        setDeadline('')
-        setPages('')
-        setSources('')
-        setFormatting('')
-        setDescription('')
-        setName('')
-        setEmail('')
-        setFiles([])
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
-    } finally {
-      setLoading(false)
-    }
+---
+Files attached: ${files.length > 0 ? files.map(f => f.name).join(', ') : 'None'}
+
+Please reply to this email to confirm the request.`
+
+    // Encode the email body for the mailto link
+    const encodedBody = encodeURIComponent(emailBody)
+    const subject_line = encodeURIComponent(`Academic Writing Request - ${subject} (${pages} pages)`)
+    
+    // Create mailto link
+    const mailtoLink = `mailto:houston@remotemindssolutions.com?subject=${subject_line}&body=${encodedBody}`
+    
+    // Open email client
+    window.location.href = mailtoLink
   }
 
   return (
     <Card className="p-8">
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
-        {/* Status Messages */}
-        {submitStatus === 'success' && (
-          <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-            Your request has been submitted successfully! We&apos;ll review it and contact you shortly.
-          </div>
-        )}
-        {submitStatus === 'error' && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-            There was an error submitting your request. Please try again.
-          </div>
-        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Subject */}
@@ -261,11 +232,10 @@ const AcademicWritingForm = () => {
         {/* Submit Button */}
         <Button
           type="submit"
-          disabled={loading}
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-colors"
           size="lg"
         >
-          {loading ? 'Submitting...' : 'Submit Request'}
+          Submit Request
         </Button>
 
         <p className="text-xs text-foreground/60 text-center">
