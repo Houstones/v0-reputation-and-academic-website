@@ -14,291 +14,179 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 
-const COST_PER_PAGE = 8
-
 const AcademicWritingForm = () => {
-  const [formData, setFormData] = useState({
-    subject: '',
-    deadline: '',
-    pages: '',
-    sources: '',
-    formatting: '',
-    description: '',
-    name: '',
-    email: '',
-  })
-  const [files, setFiles] = useState<File[]>([])
-  const [loading, setLoading] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [subject, setSubject] = useState('')
+  const [deadline, setDeadline] = useState('')
+  const [pages, setPages] = useState('')
+  const [sources, setSources] = useState('')
+  const [formatting, setFormatting] = useState('')
+  const [description, setDescription] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-  const totalCost = formData.pages ? parseInt(formData.pages) * COST_PER_PAGE : 0
+  const totalCost = pages ? parseInt(pages) * 8 : 0
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files))
-    }
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
 
-    try {
-      const formDataToSend = new FormData()
-      
-      // Add text fields
-      formDataToSend.append('subject', formData.subject)
-      formDataToSend.append('deadline', formData.deadline)
-      formDataToSend.append('pages', formData.pages)
-      formDataToSend.append('sources', formData.sources)
-      formDataToSend.append('formatting', formData.formatting)
-      formDataToSend.append('description', formData.description)
-      formDataToSend.append('name', formData.name)
-      formDataToSend.append('email', formData.email)
-      formDataToSend.append('totalCost', totalCost.toString())
-
-      // Add files
-      files.forEach((file) => {
-        formDataToSend.append('files', file)
-      })
-
-      const response = await fetch('/api/academic-writing', {
-        method: 'POST',
-        body: formDataToSend,
-      })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({
-          subject: '',
-          deadline: '',
-          pages: '',
-          sources: '',
-          formatting: '',
-          description: '',
-          name: '',
-          email: '',
-        })
-        setFiles([])
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
-    } finally {
-      setLoading(false)
+    // Simple check - if any field is empty, show alert
+    if (!subject || !deadline || !pages || !formatting || !name || !email || !description) {
+      alert('Please fill in all required fields')
+      return
     }
+
+    // Sources can be 0, so allow it
+    if (sources === '') {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    // Build message
+    const msg = `*ACADEMIC WRITING REQUEST*
+
+*Student Details:*
+Name: ${name}
+Email: ${email}
+
+*Assignment Details:*
+Subject: ${subject}
+Deadline: ${deadline}
+Pages: ${pages}
+Sources: ${sources}
+Format: ${formatting}
+Cost: $${totalCost}
+
+*Description:*
+${description}`
+
+    // Send to WhatsApp
+    const encoded = encodeURIComponent(msg)
+    window.open(`https://wa.me/18439657071?text=${encoded}`, '_blank')
   }
 
   return (
     <Card className="p-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Status Messages */}
-        {submitStatus === 'success' && (
-          <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-            Your request has been submitted successfully! We&apos;ll review it and contact you shortly.
-          </div>
-        )}
-        {submitStatus === 'error' && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-            There was an error submitting your request. Please try again or contact us directly.
-          </div>
-        )}
-
+      <form onSubmit={handleSubmit} noValidate className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Subject */}
           <div className="space-y-2">
-            <Label htmlFor="subject">Subject *</Label>
-            <Select value={formData.subject} onValueChange={(value) => handleSelectChange('subject', value)}>
+            <Label>Subject Type *</Label>
+            <Select value={subject} onValueChange={setSubject}>
               <SelectTrigger>
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="essay">Essay</SelectItem>
-                <SelectItem value="term-paper">Term Paper</SelectItem>
-                <SelectItem value="research-paper">Research Paper</SelectItem>
-                <SelectItem value="data-analysis">Data Analysis</SelectItem>
-                <SelectItem value="maths">Maths</SelectItem>
-                <SelectItem value="discussion-post">Discussion Post</SelectItem>
+                <SelectItem value="Essay">Essay</SelectItem>
+                <SelectItem value="Term Paper">Term Paper</SelectItem>
+                <SelectItem value="Research Paper">Research Paper</SelectItem>
+                <SelectItem value="Data Analysis">Data Analysis</SelectItem>
+                <SelectItem value="Mathematics">Mathematics</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {/* Deadline */}
           <div className="space-y-2">
-            <Label htmlFor="deadline">Deadline *</Label>
+            <Label>Deadline *</Label>
             <Input
               type="datetime-local"
-              name="deadline"
-              value={formData.deadline}
-              onChange={handleInputChange}
-              required
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
 
           {/* Pages */}
           <div className="space-y-2">
-            <Label htmlFor="pages">Number of Pages *</Label>
+            <Label>Number of Pages *</Label>
             <Input
               type="number"
-              name="pages"
               min="1"
-              value={formData.pages}
-              onChange={handleInputChange}
-              placeholder="Enter number of pages"
-              required
+              value={pages}
+              onChange={(e) => setPages(e.target.value)}
+              placeholder="e.g., 5"
             />
-            {formData.pages && (
-              <p className="text-sm text-primary font-semibold">
-                Estimated Cost: ${totalCost}
-              </p>
-            )}
+            {pages && <p className="text-sm font-semibold text-primary">Cost: ${totalCost}</p>}
           </div>
 
           {/* Sources */}
           <div className="space-y-2">
-            <Label htmlFor="sources">Number of Cited Sources *</Label>
+            <Label>Cited Sources *</Label>
             <Input
               type="number"
-              name="sources"
               min="0"
-              value={formData.sources}
-              onChange={handleInputChange}
-              placeholder="Enter number of sources"
-              required
+              value={sources}
+              onChange={(e) => setSources(e.target.value)}
+              placeholder="e.g., 10"
             />
           </div>
 
-          {/* Formatting Style */}
+          {/* Formatting */}
           <div className="space-y-2">
-            <Label htmlFor="formatting">Formatting Style *</Label>
-            <Select value={formData.formatting} onValueChange={(value) => handleSelectChange('formatting', value)}>
+            <Label>Formatting Style *</Label>
+            <Select value={formatting} onValueChange={setFormatting}>
               <SelectTrigger>
-                <SelectValue placeholder="Select formatting style" />
+                <SelectValue placeholder="Select format" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="apa">APA</SelectItem>
-                <SelectItem value="mla">MLA</SelectItem>
-                <SelectItem value="harvard">Harvard</SelectItem>
-                <SelectItem value="chicago">Chicago</SelectItem>
+                <SelectItem value="APA">APA</SelectItem>
+                <SelectItem value="MLA">MLA</SelectItem>
+                <SelectItem value="Chicago">Chicago</SelectItem>
+                <SelectItem value="Harvard">Harvard</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+
+          {/* Name */}
+          <div className="space-y-2">
+            <Label>Your Name *</Label>
+            <Input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="space-y-2">
+            <Label>Email Address *</Label>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+            />
           </div>
         </div>
 
         {/* Description */}
         <div className="space-y-2">
-          <Label htmlFor="description">Assignment Description/Requirements *</Label>
+          <Label>Assignment Description *</Label>
           <Textarea
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            placeholder="Provide details about your assignment..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe your assignment requirements..."
             className="min-h-32"
-            required
           />
         </div>
 
-        {/* File Upload */}
-        <div className="space-y-2">
-          <Label htmlFor="files">Attach Files (Optional)</Label>
-          <Input
-            type="file"
-            multiple
-            onChange={handleFileChange}
-            className="cursor-pointer"
-          />
-          {files.length > 0 && (
-            <div className="mt-2">
-              <p className="text-sm font-medium">Files attached:</p>
-              <ul className="mt-1 space-y-1">
-                {files.map((file, index) => (
-                  <li key={index} className="text-sm text-foreground/70">
-                    {file.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* Personal Info */}
-        <div className="border-t pt-6">
-          <h3 className="font-semibold mb-4">Your Information</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name *</Label>
-              <Input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Your name"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email Address *</Label>
-              <Input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Cost Summary */}
-        {formData.pages && (
-          <div className="bg-primary/10 p-4 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">Total Estimated Cost:</span>
-              <span className="text-2xl font-bold text-primary">${totalCost}</span>
-            </div>
-            <p className="text-sm text-foreground/70 mt-2">
-              ($8 per page)
-            </p>
-          </div>
-        )}
-
-        {/* Submit Button */}
+        {/* Submit */}
         <Button
           type="submit"
-          disabled={loading || !formData.subject || !formData.deadline || !formData.pages || !formData.formatting || !formData.name || !formData.email}
-          className="w-full"
+          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
           size="lg"
         >
-          {loading ? 'Submitting...' : 'Submit Request'}
+          Submit to WhatsApp
         </Button>
 
-        <p className="text-xs text-foreground/60 text-center">
-          All submissions will be sent to houston@remotemindssolutions.com for review
-        </p>
+        {/* Info */}
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            All submissions will be sent to WhatsApp for review.
+          </p>
+        </div>
       </form>
     </Card>
   )

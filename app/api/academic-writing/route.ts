@@ -11,6 +11,14 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if environment variables are set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+      return NextResponse.json(
+        { error: 'Email service not configured. Please contact the administrator.' },
+        { status: 500 }
+      )
+    }
+
     const formData = await request.formData()
 
     // Extract form fields
@@ -62,7 +70,7 @@ Files attached in separate transmission.
     }
 
     // Send email
-    await transporter.sendMail({
+    const mailResponse = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: 'houston@remotemindssolutions.com',
       replyTo: email,
@@ -84,7 +92,7 @@ Files attached in separate transmission.
       { status: 200 }
     )
   } catch (error) {
-    console.error('Email submission error:', error)
+    console.error('Form submission error:', error)
     return NextResponse.json(
       { error: 'Failed to submit request' },
       { status: 500 }

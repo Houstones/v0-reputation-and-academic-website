@@ -40,7 +40,7 @@ const ServicesOverview = () => {
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Review Analytics Section */}
+        {/* Review Analytics Section with Image */}
         <div className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
@@ -73,13 +73,13 @@ const ServicesOverview = () => {
                 </div>
               </div>
             </div>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-xl overflow-hidden shadow-2xl h-96">
               <Image
                 src="/images/reviews-analytics.jpg"
                 alt="Professional reviewing analytics dashboard with positive ratings"
-                width={500}
-                height={400}
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
             </div>
@@ -111,16 +111,16 @@ const ServicesOverview = () => {
           </div>
         </div>
 
-        {/* Academic Writing Section */}
+        {/* Academic Writing Section with Image */}
         <div className="mt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-xl overflow-hidden shadow-2xl order-2 lg:order-1">
+            <div className="relative rounded-xl overflow-hidden shadow-2xl h-96 order-2 lg:order-1">
               <Image
                 src="/images/academic-support.jpg"
                 alt="Academic professional working on research and writing"
-                width={500}
-                height={400}
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/20 to-transparent"></div>
             </div>
@@ -155,7 +155,7 @@ const ServicesOverview = () => {
               </div>
               <Link href="/academic-writing">
                 <button className="mt-8 px-8 py-3 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-lg transition-colors">
-                  Start Your Request
+                  Learn More
                 </button>
               </Link>
             </div>

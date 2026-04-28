@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
@@ -17,11 +18,22 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b border-primary/20">
+    <nav className="sticky top-0 z-50 bg-background border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="font-bold text-xl text-primary">
-            Remote Minds Solutions
+        <div className="flex justify-between items-center h-24">
+          <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+            <Image
+              src="/logo.png"
+              alt="Remote Minds Solutions"
+              width={60}
+              height={60}
+              className="h-14 w-auto"
+              priority
+            />
+            <div className="hidden sm:block">
+              <div className="font-bold text-3xl text-primary leading-tight">Remote Minds</div>
+              <div className="text-base font-bold text-accent">Solutions</div>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
