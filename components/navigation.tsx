@@ -20,19 +20,19 @@ const Navigation = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-32">
-          <Link href="/" className="flex items-center gap-6 hover:opacity-80 transition-opacity">
+        <div className="flex justify-between items-center h-24">
+          <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
             <Image
               src="/logo.png"
               alt="Remote Minds Solutions"
-              width={90}
-              height={90}
-              className="h-20 w-auto"
+              width={60}
+              height={60}
+              className="h-14 w-auto"
               priority
             />
             <div className="hidden sm:block">
-              <div className="font-black text-5xl text-primary leading-tight">Remote Minds</div>
-              <div className="text-xl font-bold text-accent">Solutions</div>
+              <div className="font-bold text-3xl text-primary leading-tight">Remote Minds</div>
+              <div className="text-base font-bold text-accent">Solutions</div>
             </div>
           </Link>
 

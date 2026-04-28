@@ -1,13 +1,14 @@
 'use client'
 
 import { MessageCircle, Instagram, Star } from 'lucide-react'
+import Image from 'next/image'
 
 export default function AcademicWritingPage() {
   const tutors = [
-    { name: 'Dr. Sarah Mitchell', qualification: 'PhD in English Literature', specialty: 'Essays & Research Papers' },
-    { name: 'Prof. James Chen', qualification: 'Master\'s in Data Science', specialty: 'Data Analysis & Math' },
-    { name: 'Dr. Emma Rodriguez', qualification: 'PhD in Business Administration', specialty: 'Business & Economics Papers' },
-    { name: 'Prof. Michael Brown', qualification: 'Master\'s in Computer Science', specialty: 'Technical Writing & Reports' },
+    { name: 'Dr. Sarah Mitchell', qualification: 'PhD in English Literature', specialty: 'Essays & Research Papers', image: '/tutor-1.jpg' },
+    { name: 'Prof. James Chen', qualification: 'Master\'s in Data Science', specialty: 'Data Analysis & Math', image: '/tutor-2.jpg' },
+    { name: 'Dr. Emma Rodriguez', qualification: 'PhD in Business Administration', specialty: 'Business & Economics Papers', image: '/tutor-3.jpg' },
+    { name: 'Prof. Michael Brown', qualification: 'Master\'s in Computer Science', specialty: 'Technical Writing & Reports', image: '/tutor-4.jpg' },
   ]
 
   const studentReviews = [
@@ -69,13 +70,20 @@ export default function AcademicWritingPage() {
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Meet Our Expert Tutors</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {tutors.map((tutor, index) => (
-              <div key={index} className="bg-card rounded-xl p-8 border border-primary/20 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 bg-primary/20 rounded-full mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-primary">{tutor.name[0]}</span>
+              <div key={index} className="bg-card rounded-xl overflow-hidden border border-primary/20 hover:shadow-lg transition-shadow">
+                <div className="relative w-full h-48">
+                  <Image
+                    src={tutor.image}
+                    alt={tutor.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{tutor.name}</h3>
-                <p className="text-accent font-semibold text-sm mb-3">{tutor.qualification}</p>
-                <p className="text-foreground/70 text-sm">{tutor.specialty}</p>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold mb-2">{tutor.name}</h3>
+                  <p className="text-accent font-semibold text-sm mb-2">{tutor.qualification}</p>
+                  <p className="text-foreground/70 text-sm">{tutor.specialty}</p>
+                </div>
               </div>
             ))}
           </div>
