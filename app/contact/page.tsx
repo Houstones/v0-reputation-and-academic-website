@@ -203,7 +203,7 @@ export default function ContactPage() {
               },
               {
                 q: 'Can you work with my timezone?',
-                a: 'Yes, we&apos;re a global team and can work across all timezones. We&apos;ll coordinate the best time for your project.',
+                a: 'Yes, we are a global team and can work across all timezones. We will coordinate the best time for your project.',
               },
             ].map((faq, index) => (
               <Card key={index} className="p-6 border border-primary/20 hover:shadow-md transition-shadow">
