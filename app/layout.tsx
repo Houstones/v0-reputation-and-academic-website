@@ -10,8 +10,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Remote Minds Solutions - Reviews & Academic Writing',
-  description: 'Grow your business through reputation management and get academic writing support. Expert services for reviews, reputation, and academic excellence.',
+  title: 'Remote Minds Solutions - Digital Services & Business Solutions',
+  description: 'Remote Minds Solutions provides comprehensive digital services including academic support, reputation management, AI data solutions, web design, digital marketing, and business process outsourcing.',
   generator: 'v0.app',
   icons: {
     icon: [

@@ -10,11 +10,9 @@ const Navigation = () => {
 
   const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'Local Reviews', href: '/reviews/local' },
-    { name: 'Platform Reviews', href: '/reviews/platform' },
-    { name: 'E-commerce Reviews', href: '/reviews/ecommerce' },
-    { name: 'Employer Branding', href: '/reviews/employer' },
-    { name: 'Academic Writing', href: '/academic-writing' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (
@@ -37,12 +35,12 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8 items-center">
+          <div className="hidden md:flex gap-12 items-center">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="text-foreground hover:text-primary transition-colors text-base font-semibold"
               >
                 {item.name}
               </Link>
@@ -65,7 +63,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="block py-3 text-foreground hover:text-primary transition-colors text-base font-semibold"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
