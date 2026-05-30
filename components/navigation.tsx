@@ -10,11 +10,9 @@ const Navigation = () => {
 
   const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'Local Reviews', href: '/reviews/local' },
-    { name: 'Platform Reviews', href: '/reviews/platform' },
-    { name: 'E-commerce Reviews', href: '/reviews/ecommerce' },
-    { name: 'Employer Branding', href: '/reviews/employer' },
-    { name: 'Academic Writing', href: '/academic-writing' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (
