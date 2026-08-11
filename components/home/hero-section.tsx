@@ -1,10 +1,15 @@
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 const HeroSection = () => {
   return (
-    <section className="bg-gradient-to-br from-primary via-blue-600 to-primary/90 text-primary-foreground py-24 md:py-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
+      <div className="absolute inset-0 -z-10">
+        <Image src="/office-team-hero.png" alt="A collaborative Remote Minds Solutions office team" fill priority sizes="100vw" className="object-cover opacity-35" />
+        <div className="absolute inset-0 bg-primary/80" />
+      </div>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight">
           Smart Solutions for a Digital World
         </h1>
@@ -32,7 +37,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Link href="/services">
             <Button size="lg" variant="secondary" className="w-full sm:w-auto px-8 py-6 text-base">
               Explore All Services
@@ -44,6 +49,7 @@ const HeroSection = () => {
             </Button>
           </Link>
         </div>
+        <div className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/60">Remote Minds Solutions</div>
       </div>
     </section>
   )
