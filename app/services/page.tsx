@@ -122,7 +122,7 @@ export default function ServicesPage() {
                 <Link key={index} href={service.href}>
                   <Card className="group h-full overflow-hidden bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl">
                     <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
-                      <Image src={service.image} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <Image src={service.image} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-105" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
                       <div className={`absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br ${service.color} p-3 text-primary-foreground shadow-lg`}>
                         <Icon className="size-full" />
