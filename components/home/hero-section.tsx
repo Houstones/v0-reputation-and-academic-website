@@ -6,8 +6,8 @@ const HeroSection = () => {
   return (
     <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
       <div className="absolute inset-0 -z-10">
-        <Image src="/office-team-hero.png" alt="A collaborative Remote Minds Solutions office team" fill priority sizes="100vw" className="object-cover opacity-35" />
-        <div className="absolute inset-0 bg-primary/80" />
+        <Image src="/office-team-hero.png" alt="A collaborative Remote Minds Solutions office team" fill priority sizes="100vw" className="object-cover opacity-75" />
+        <div className="absolute inset-0 bg-primary/45" />
       </div>
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight">
