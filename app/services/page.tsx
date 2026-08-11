@@ -15,6 +15,7 @@ export default function ServicesPage() {
       href: '/services/academic-writing',
       color: 'from-blue-500 to-blue-600',
       benefits: ['Expert Writers', 'Fast Turnaround', '$8/page'],
+      image: '/tutor-1.jpg',
     },
     {
       title: 'Reputation Management',
@@ -23,6 +24,7 @@ export default function ServicesPage() {
       href: '/services/reputation-management',
       color: 'from-emerald-500 to-emerald-600',
       benefits: ['Real Reviews', 'Rating Boost', 'Proven Results'],
+      image: '/service-digital-marketing.png',
     },
     {
       title: 'AI Data & Model Support',
@@ -31,6 +33,7 @@ export default function ServicesPage() {
       href: '/services/ai-data',
       color: 'from-purple-500 to-purple-600',
       benefits: ['ML Experts', 'Data Solutions', 'AI Integration'],
+      image: '/service-ai-data.png',
     },
     {
       title: 'Web Development',
@@ -39,6 +42,7 @@ export default function ServicesPage() {
       href: '/services/web-development',
       color: 'from-orange-500 to-orange-600',
       benefits: ['Responsive Design', 'Fast Performance', 'SEO Optimized'],
+      image: '/service-data-analytics.png',
     },
     {
       title: 'Digital Marketing',
@@ -47,6 +51,7 @@ export default function ServicesPage() {
       href: '/services/digital-marketing',
       color: 'from-pink-500 to-pink-600',
       benefits: ['Organic Growth', 'Social Strategy', 'Campaign Management'],
+      image: '/service-digital-marketing.png',
     },
     {
       title: 'Branding & Creative',
@@ -55,6 +60,7 @@ export default function ServicesPage() {
       href: '/services/branding',
       color: 'from-red-500 to-red-600',
       benefits: ['Professional Design', 'Brand Strategy', 'Creative Assets'],
+      image: '/tutor-2.jpg',
     },
     {
       title: 'Business Outsourcing',
@@ -63,6 +69,7 @@ export default function ServicesPage() {
       href: '/services/bpo',
       color: 'from-indigo-500 to-indigo-600',
       benefits: ['24/7 Support', 'Cost Effective', 'Scalable Team'],
+      image: '/tutor-3.jpg',
     },
     {
       title: 'Content & Publishing',
@@ -71,6 +78,7 @@ export default function ServicesPage() {
       href: '/services/content',
       color: 'from-cyan-500 to-cyan-600',
       benefits: ['Quality Content', 'SEO Writing', 'Consistent Publishing'],
+      image: '/tutor-4.jpg',
     },
     {
       title: 'Data & Analytics',
@@ -79,6 +87,7 @@ export default function ServicesPage() {
       href: '/services/analytics',
       color: 'from-green-500 to-green-600',
       benefits: ['Real-Time Insights', 'Data Visualization', 'Strategic Reports'],
+      image: '/service-data-analytics.png',
     },
     {
       title: 'Technology & Automation',
@@ -87,6 +96,7 @@ export default function ServicesPage() {
       href: '/services/technology',
       color: 'from-teal-500 to-teal-600',
       benefits: ['Process Automation', 'System Integration', 'Cost Savings'],
+      image: '/service-ai-data.png',
     },
   ]
 
@@ -110,23 +120,29 @@ export default function ServicesPage() {
               const Icon = service.icon
               return (
                 <Link key={index} href={service.href}>
-                  <Card className="h-full p-6 hover:shadow-xl transition-all hover:border-primary hover:-translate-y-2 cursor-pointer bg-card">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} p-3 mb-4`}>
-                      <Icon className="w-full h-full text-white" />
+                  <Card className="group h-full overflow-hidden bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
+                      <Image src={service.image} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                      <div className={`absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br ${service.color} p-3 text-primary-foreground shadow-lg`}>
+                        <Icon className="size-full" />
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold mb-2 text-foreground">{service.title}</h3>
-                    <p className="text-sm text-foreground/70 mb-4">{service.description}</p>
-                    <div className="space-y-1 mb-4">
-                      {service.benefits.map((benefit, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-accent font-semibold">
-                          <ArrowRight size={12} />
-                          {benefit}
-                        </div>
-                      ))}
+                    <div className="flex flex-col gap-4 p-6">
+                      <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+                      <p className="text-sm leading-6 text-muted-foreground">{service.description}</p>
+                      <div className="flex flex-col gap-2">
+                        {service.benefits.map((benefit, i) => (
+                          <div key={i} className="flex items-center gap-2 text-xs font-semibold text-accent">
+                            <ArrowRight className="size-3" />
+                            {benefit}
+                          </div>
+                        ))}
+                      </div>
+                      <Button variant="outline" size="sm" className="w-full text-primary transition-all hover:bg-primary hover:text-primary-foreground">
+                        Learn More
+                      </Button>
                     </div>
-                    <Button variant="outline" size="sm" className="w-full text-primary border-primary hover:bg-primary hover:text-primary-foreground transition-all">
-                      Learn More
-                    </Button>
                   </Card>
                 </Link>
               )

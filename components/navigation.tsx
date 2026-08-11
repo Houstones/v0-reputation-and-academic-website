@@ -18,19 +18,19 @@ const Navigation = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
-          <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+        <div className="flex min-h-20 items-center justify-between gap-4 py-3 md:min-h-24 md:py-0">
+          <Link href="/" className="flex min-w-0 items-center gap-3 transition-opacity hover:opacity-80">
             <Image
               src="/logo.png"
               alt="Remote Minds Solutions"
               width={60}
               height={60}
-              className="h-14 w-auto"
+              className="size-12 shrink-0 object-contain sm:size-14"
               priority
             />
-            <div className="hidden sm:block">
-              <div className="font-bold text-3xl text-primary leading-tight">Remote Minds</div>
-              <div className="text-base font-bold text-accent">Solutions</div>
+            <div className="min-w-0">
+              <div className="truncate text-xl font-bold leading-tight text-primary sm:text-2xl md:text-3xl">Remote Minds</div>
+              <div className="text-sm font-bold text-accent sm:text-base">Solutions</div>
             </div>
           </Link>
 
@@ -49,10 +49,13 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            type="button"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            className="inline-flex size-11 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:bg-muted md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
         </div>
 
