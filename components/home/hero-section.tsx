@@ -10,10 +10,10 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-primary/45" />
       </div>
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight">
+        <h1 className="mx-auto max-w-4xl text-center text-5xl font-bold leading-tight text-balance md:text-7xl">
           Smart Solutions for a Digital World
         </h1>
-        <p className="text-lg md:text-2xl mb-12 text-primary-foreground/95 text-balance max-w-3xl mx-auto font-light">
+        <p className="mx-auto max-w-3xl text-center text-lg font-light leading-relaxed text-primary-foreground/95 text-balance md:text-2xl">
           Helping businesses, researchers, and entrepreneurs achieve more through technology, talent, and innovation.
         </p>
         
