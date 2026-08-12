@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
 
   const serviceItems = [
     { name: 'Academic & Research Support', href: '/services/academic-writing' },
@@ -59,17 +60,19 @@ const Navigation = () => {
                 type="button"
                 className="inline-flex items-center gap-1 text-base font-semibold text-foreground transition-colors hover:text-primary"
                 aria-haspopup="true"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen((open) => !open)}
               >
                 Services
-                <ChevronDown aria-hidden="true" className="size-4 transition-transform group-hover:rotate-180" />
+                <ChevronDown aria-hidden="true" className={`size-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="invisible absolute right-0 top-full w-72 translate-y-2 rounded-xl border border-border bg-background p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                <Link href="/services" className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted">
+              <div className={`absolute right-0 top-full w-72 rounded-xl border border-border bg-background p-2 shadow-xl transition-all ${servicesOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-2 opacity-0'}`}>
+                <Link href="/services" onClick={() => setServicesOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted">
                   View All Services
                 </Link>
                 <div className="my-1 border-t border-border" />
                 {serviceItems.map((item) => (
-                  <Link key={item.href} href={item.href} className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted hover:text-primary">
+                  <Link key={item.href} href={item.href} onClick={() => setServicesOpen(false)} className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted hover:text-primary">
                     {item.name}
                   </Link>
                 ))}
