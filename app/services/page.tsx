@@ -103,7 +103,7 @@ export default function ServicesPage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-blue-600 to-primary/90 text-primary-foreground py-16 md:py-24">
+      <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">All Our Services</h1>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
@@ -123,7 +123,7 @@ export default function ServicesPage() {
                   <Card className="group h-full overflow-hidden bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl">
                     <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
                       <Image src={service.image} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/5 to-transparent" />
                       <div className={`absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br ${service.color} p-3 text-primary-foreground shadow-lg`}>
                         <Icon className="size-full" />
                       </div>
@@ -152,7 +152,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-lg text-primary-foreground/90 mb-8">

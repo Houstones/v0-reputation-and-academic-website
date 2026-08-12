@@ -2,16 +2,28 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const serviceItems = [
+    { name: 'Academic & Research Support', href: '/services/academic-writing' },
+    { name: 'Review & Reputation Management', href: '/services/reputation-management' },
+    { name: 'AI & Data Solutions', href: '/services/ai-data' },
+    { name: 'Web Development', href: '/services/web-development' },
+    { name: 'Digital Marketing', href: '/services/digital-marketing' },
+    { name: 'Branding & Creative', href: '/services/branding' },
+    { name: 'Business Process Outsourcing', href: '/services/bpo' },
+    { name: 'Content & Publishing', href: '/services/content' },
+    { name: 'Data Analytics', href: '/services/analytics' },
+    { name: 'Technology Consulting', href: '/services/technology' },
+  ]
+
   const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -35,16 +47,37 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-12 items-center">
-            {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors text-base font-semibold"
+          <div className="hidden items-center gap-12 md:flex">
+            <Link href="/" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+              Home
+            </Link>
+            <Link href="/about" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+              About Us
+            </Link>
+            <div className="group relative">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 text-base font-semibold text-foreground transition-colors hover:text-primary"
+                aria-haspopup="true"
               >
-                {item.name}
-              </Link>
-            ))}
+                Services
+                <ChevronDown aria-hidden="true" className="size-4 transition-transform group-hover:rotate-180" />
+              </button>
+              <div className="invisible absolute right-0 top-full w-72 translate-y-2 rounded-xl border border-border bg-background p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                <Link href="/services" className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted">
+                  View All Services
+                </Link>
+                <div className="my-1 border-t border-border" />
+                {serviceItems.map((item) => (
+                  <Link key={item.href} href={item.href} className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted hover:text-primary">
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <Link href="/contact" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+              Contact
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -62,16 +95,30 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden pb-4 border-t border-primary/20">
-            {menuItems.map((item) => (
+            {menuItems.slice(0, 2).map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-3 text-foreground hover:text-primary transition-colors text-base font-semibold"
+                className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
+            <div className="border-t border-border py-2">
+              <div className="py-2 text-base font-semibold text-primary">Services</div>
+              <Link href="/services" className="block py-2 pl-4 text-sm font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                View All Services
+              </Link>
+              {serviceItems.map((item) => (
+                <Link key={item.href} href={item.href} className="block py-2 pl-4 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            <Link href="/contact" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+              Contact
+            </Link>
           </div>
         )}
       </div>
