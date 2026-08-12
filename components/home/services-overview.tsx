@@ -38,7 +38,7 @@ export default function ServicesOverview() {
                 <Card className="h-full overflow-hidden border-border/70 bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-xl">
                   <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
                     <Image src={service.image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/5 to-transparent" />
                     <div className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-xl bg-background/90 text-primary shadow-lg"><Icon /></div>
                   </div>
                   <CardContent className="flex flex-col gap-3 p-6">
