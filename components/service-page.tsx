@@ -8,7 +8,7 @@ export default function ServicePage({ service }: { service: ServiceContent }) {
   return (
     <main>
       <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
-        <div className="absolute inset-0 -z-10"><Image src={service.image} alt="" fill priority className="object-cover opacity-75" sizes="100vw" /><div className="absolute inset-0 bg-primary/45" /></div>
+        <div className="absolute inset-0 -z-10"><Image src={service.image} alt="" fill priority className="object-cover object-top opacity-75" sizes="100vw" /><div className="absolute inset-0 bg-primary/45" /></div>
         <div className="mx-auto flex min-h-[420px] max-w-7xl flex-col justify-center gap-6 px-4 py-20 sm:px-6 lg:px-8">
           <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent"><Sparkles className="size-4" /> Remote Minds Solutions</p>
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-balance sm:text-5xl md:text-6xl">{service.title}</h1>
