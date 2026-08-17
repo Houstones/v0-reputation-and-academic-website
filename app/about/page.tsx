@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             {/* Mission */}
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-primary/10">
+            <div className="bg-card text-card-foreground rounded-lg p-8 shadow-sm border border-primary/10">
               <h3 className="text-2xl font-bold text-primary mb-4">Our Mission</h3>
               <p className="text-foreground/80 leading-relaxed">
                 To empower businesses, institutions, and individuals with innovative digital solutions that enhance performance, build trust, and accelerate growth.
@@ -42,7 +42,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision */}
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-primary/10">
+            <div className="bg-card text-card-foreground rounded-lg p-8 shadow-sm border border-primary/10">
               <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
               <p className="text-foreground/80 leading-relaxed">
                 To become a trusted global partner for digital transformation, research support, AI innovation, and business excellence.
@@ -50,7 +50,7 @@ export default function AboutPage() {
             </div>
 
             {/* Approach */}
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-primary/10">
+            <div className="bg-card text-card-foreground rounded-lg p-8 shadow-sm border border-primary/10">
               <h3 className="text-2xl font-bold text-primary mb-4">Our Approach</h3>
               <p className="text-foreground/80 leading-relaxed">
                 At Remote Minds Solutions, we believe that every organization deserves access to world-class expertise regardless of size or location. Our remote-first approach allows us to serve clients globally while maintaining flexibility, efficiency, and competitive pricing.
