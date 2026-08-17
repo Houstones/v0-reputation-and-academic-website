@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import ThemeToggle from '@/components/theme-toggle'
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -81,6 +82,7 @@ const Navigation = () => {
             <Link href="/contact" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
               Contact
             </Link>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -122,6 +124,10 @@ const Navigation = () => {
             <Link href="/contact" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
               Contact
             </Link>
+            <div className="flex items-center justify-between border-t border-border pt-3">
+              <span className="text-sm font-semibold text-muted-foreground">Appearance</span>
+              <ThemeToggle />
+            </div>
           </div>
         )}
       </div>
