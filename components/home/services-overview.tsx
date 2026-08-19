@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 const services = [
   { title: 'Academic & Research Support', description: 'Clear, rigorous support for essays, research, analysis, and academic projects.', href: '/services/academic-writing', icon: BookOpen, image: '/tutor-1.jpg' },
   { title: 'Review & Reputation Management', description: 'Build trust, strengthen visibility, and turn customer feedback into growth.', href: '/services/reputation-management', icon: Star, image: '/service-digital-marketing.png' },
-  { title: 'AI Agents & Automation', description: 'Hire AI agents that answer calls, manage reviews, and run your back-office — no code required.', href: '/services/ai-agents', icon: Zap, image: '/service-ai-agents.png' },
+  { title: 'AI Agents & Automation', description: 'Hire AI agents that answer calls, manage reviews, and run your back-office — no code required.', href: '/services/ai-agents', icon: Zap, image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TVdMrWJxqdaGnzPRu1QYjKMKsqz7ya.png' },
   { title: 'AI Data & Model Support', description: 'High-quality data preparation, annotation, evaluation, and model support.', href: '/services/ai-data', icon: BrainCircuit, image: '/service-ai-data.png' },
   { title: 'Web Design & Development', description: 'Fast, accessible digital experiences designed around your goals.', href: '/services/web-development', icon: Code2, image: '/service-web-development.png' },
   { title: 'Digital Marketing', description: 'Strategic campaigns that connect your brand with the right audience.', href: '/services/digital-marketing', icon: Megaphone, image: '/service-digital-marketing.png' },
@@ -37,7 +37,7 @@ export default function ServicesOverview() {
               <Link key={service.href} href={service.href} className="group">
                 <Card className="h-full overflow-hidden border-border/70 bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-xl">
                   <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
-                    <Image src={service.image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                    <Image src={service.image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-[center_top] transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/5 to-transparent" />
                     <div className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-xl bg-background/90 text-primary shadow-lg"><Icon /></div>
                   </div>

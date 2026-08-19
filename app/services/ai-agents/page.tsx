@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Check, Mail, MessageCircle, Plus } from 'lucide-react'
+import { ArrowUpRight, Check, Instagram, Mail, MessageCircle, Plus } from 'lucide-react'
 import { agents, agentCategories, agentIconTiles, contactLinks } from '@/lib/ai-agents'
 
 function activeUsersFor(agentName: string) {
@@ -18,21 +18,20 @@ export default function AIAgentsPage() {
   const filteredAgents = useMemo(() => category === 'All' ? agents : agents.filter((agent) => agent.category === category), [category])
 
   return (
-    <main className="bg-background py-16 md:py-24">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/7] min-h-56 overflow-hidden rounded-2xl border border-border bg-primary/10 shadow-sm md:min-h-72">
-          <Image src="/service-ai-agents.png" alt="AI automation workflow with connected nodes and an email reply" fill priority sizes="(max-width: 768px) 100vw, 1280px" className="object-cover object-top" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-6 text-primary-foreground md:p-10">
-            <p className="max-w-xl text-pretty text-lg font-semibold md:text-2xl">Connected workflows that turn everyday tasks into reliable automation.</p>
-          </div>
+    <main className="bg-background">
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-primary text-primary-foreground sm:min-h-[600px] md:min-h-[680px]">
+        <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TVdMrWJxqdaGnzPRu1QYjKMKsqz7ya.png" alt="AI Agents and Automation n8n workflow with automated email reply" fill priority sizes="100vw" className="object-cover object-center" />
+        <div className="absolute inset-0 bg-primary/50" />
+        <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col justify-center gap-5 px-6 py-20 sm:min-h-[600px] md:min-h-[680px] md:px-10 lg:px-16">
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent"><span aria-hidden="true">✣</span> Remote Minds Solutions</p>
+          <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl md:text-7xl">AI Agents &amp; Automation</h1>
+          <p className="max-w-2xl text-pretty text-lg leading-8 text-primary-foreground/90 md:text-2xl">Smarter workflows. Instant responses. Happier customers.</p>
+          <div className="flex flex-wrap gap-3 pt-3"><a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-secondary px-5 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"><MessageCircle className="size-5" /> WhatsApp</a><a href="https://www.instagram.com/remote_minds?igsh=MWxpMWhhNmlxOHprbQ==" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"><Instagram className="size-5" /> Instagram</a></div>
         </div>
+      </section>
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 lg:px-8">
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">Meet your AI team</p>
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl">AI Agents &amp; Automation</h1>
-            <p className="mt-4 max-w-2xl text-pretty text-lg leading-7 text-muted-foreground">Hire an agent to work your inbox, calendar, reviews, content, and pipeline — no code required.</p>
-          </div>
+          <div className="max-w-3xl"><p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">Meet your AI team</p><p className="text-pretty text-lg leading-7 text-muted-foreground">Hire an agent to work your inbox, calendar, reviews, content, and pipeline — no code required.</p></div>
           <p className="font-mono text-sm text-muted-foreground">{filteredAgents.length} agents available</p>
         </header>
 
