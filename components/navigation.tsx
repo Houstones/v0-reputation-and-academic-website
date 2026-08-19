@@ -51,10 +51,10 @@ const Navigation = () => {
 
           {/* Desktop Menu */}
           <div className="hidden items-center gap-12 md:flex">
-            <Link href="/" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
               Home
             </Link>
-            <Link href="/about" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/about" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
               About Us
             </Link>
             <div className="group relative">
@@ -80,7 +80,7 @@ const Navigation = () => {
                 ))}
               </div>
             </div>
-            <Link href="/contact" className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/contact" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
               Contact
             </Link>
             <ThemeToggle />

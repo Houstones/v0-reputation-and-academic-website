@@ -43,10 +43,7 @@ export default function AIAgentsPage() {
               <p className="mt-2 flex-1 leading-6 text-muted-foreground">{agent.blurb}</p>
               {expandedAgent === agent.name ? (
                 <div className="mt-5 border-t border-border pt-4">
-                  <button type="button" onClick={() => setExpandedAgent(null)} className="flex w-full items-center justify-between text-left text-sm font-semibold text-primary">
-                    View less <ArrowUpRight aria-hidden="true" className="rotate-[-90deg]" />
-                  </button>
-                  <div className="flex flex-col gap-4 pt-5 text-sm leading-6">
+                  <div className="flex flex-col gap-4 text-sm leading-6">
                     <div><h3 className="font-bold text-foreground">Overview</h3><p className="text-muted-foreground">{agent.blurb} This agent keeps the work moving while your team stays focused on higher-value decisions.</p></div>
                     <div><h3 className="font-bold text-foreground">How It Works</h3><ul className="mt-1 flex flex-col gap-1 text-muted-foreground">{agent.workflow.map((step) => <li key={step} className="flex gap-2"><Check className="mt-1 size-4 shrink-0 text-primary" />{step}</li>)}</ul></div>
                     <div><h3 className="font-bold text-foreground">Key Benefits</h3><ul className="mt-1 flex flex-col gap-1 text-muted-foreground">{agent.benefits.map((benefit) => <li key={benefit} className="flex gap-2"><Check className="mt-1 size-4 shrink-0 text-primary" />{benefit}</li>)}</ul></div>
@@ -55,6 +52,9 @@ export default function AIAgentsPage() {
                       <a href={contactLinks.email} className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-3 font-semibold text-primary transition-colors hover:bg-muted"><Mail className="size-4" />Email</a>
                       <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"><MessageCircle className="size-4" />WhatsApp</a>
                     </div>
+                    <button type="button" onClick={() => setExpandedAgent(null)} className="flex items-center justify-between border-t border-border pt-4 text-left font-semibold text-primary">
+                      View less <ArrowUpRight aria-hidden="true" className="rotate-[-90deg]" />
+                    </button>
                   </div>
                 </div>
               ) : (

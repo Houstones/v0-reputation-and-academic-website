@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 const services = [
   { title: 'Academic & Research Support', description: 'Clear, rigorous support for essays, research, analysis, and academic projects.', href: '/services/academic-writing', icon: BookOpen, image: '/tutor-1.jpg' },
   { title: 'Review & Reputation Management', description: 'Build trust, strengthen visibility, and turn customer feedback into growth.', href: '/services/reputation-management', icon: Star, image: '/service-digital-marketing.png' },
+  { title: 'AI Agents & Automation', description: 'Hire AI agents that answer calls, manage reviews, and run your back-office — no code required.', href: '/services/ai-agents', icon: Zap, image: '/service-ai-data.png' },
   { title: 'AI Data & Model Support', description: 'High-quality data preparation, annotation, evaluation, and model support.', href: '/services/ai-data', icon: BrainCircuit, image: '/service-ai-data.png' },
   { title: 'Web Design & Development', description: 'Fast, accessible digital experiences designed around your goals.', href: '/services/web-development', icon: Code2, image: '/service-data-analytics.png' },
   { title: 'Digital Marketing', description: 'Strategic campaigns that connect your brand with the right audience.', href: '/services/digital-marketing', icon: Megaphone, image: '/service-digital-marketing.png' },
