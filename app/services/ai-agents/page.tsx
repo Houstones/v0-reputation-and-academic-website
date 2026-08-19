@@ -1,6 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Check, Mail, MessageCircle, Plus } from 'lucide-react'
 import { agents, agentCategories, agentIconTiles, contactLinks } from '@/lib/ai-agents'
@@ -13,11 +14,19 @@ function activeUsersFor(agentName: string) {
 export default function AIAgentsPage() {
   const [category, setCategory] = useState<(typeof agentCategories)[number]>('All')
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null)
+  const previousScrollY = useRef(0)
   const filteredAgents = useMemo(() => category === 'All' ? agents : agents.filter((agent) => agent.category === category), [category])
 
   return (
     <main className="bg-background py-16 md:py-24">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+        <div className="relative aspect-[16/7] min-h-56 overflow-hidden rounded-2xl border border-border bg-primary/10 shadow-sm md:min-h-72">
+          <Image src="/service-ai-agents.png" alt="AI automation workflow with connected nodes and an email reply" fill priority sizes="(max-width: 768px) 100vw, 1280px" className="object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-6 text-primary-foreground md:p-10">
+            <p className="max-w-xl text-pretty text-lg font-semibold md:text-2xl">Connected workflows that turn everyday tasks into reliable automation.</p>
+          </div>
+        </div>
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">Meet your AI team</p>
@@ -57,13 +66,19 @@ export default function AIAgentsPage() {
                       <a href={contactLinks.email} className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-3 font-semibold text-primary transition-colors hover:bg-muted"><Mail className="size-4" />Email</a>
                       <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"><MessageCircle className="size-4" />WhatsApp</a>
                     </div>
-                    <button type="button" onClick={() => setExpandedAgent(null)} className="flex items-center justify-between border-t border-border pt-4 text-left font-semibold text-primary">
+                    <button type="button" onClick={() => {
+                        setExpandedAgent(null)
+                        requestAnimationFrame(() => window.scrollTo({ top: previousScrollY.current, behavior: 'auto' }))
+                      }} className="flex items-center justify-between border-t border-border pt-4 text-left font-semibold text-primary">
                       View less <ArrowUpRight aria-hidden="true" className="rotate-[-90deg]" />
                     </button>
                   </div>
                 </div>
               ) : (
-                <button type="button" onClick={() => setExpandedAgent(agent.name)} className="mt-5 flex w-full items-center justify-between border-t border-border pt-4 text-left text-sm font-semibold text-primary">
+                <button type="button" onClick={() => {
+                  previousScrollY.current = window.scrollY
+                  setExpandedAgent(agent.name)
+                }} className="mt-5 flex w-full items-center justify-between border-t border-border pt-4 text-left text-sm font-semibold text-primary">
                   View profile <ArrowUpRight aria-hidden="true" />
                 </button>
               )}
