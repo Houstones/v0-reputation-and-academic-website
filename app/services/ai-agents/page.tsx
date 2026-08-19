@@ -5,6 +5,11 @@ import Link from 'next/link'
 import { ArrowUpRight, Check, Mail, MessageCircle, Plus } from 'lucide-react'
 import { agents, agentCategories, agentIconTiles, contactLinks } from '@/lib/ai-agents'
 
+function activeUsersFor(agentName: string) {
+  const seed = Array.from(agentName).reduce((total, character) => total + character.charCodeAt(0), 0)
+  return 20 + (seed % 31)
+}
+
 export default function AIAgentsPage() {
   const [category, setCategory] = useState<(typeof agentCategories)[number]>('All')
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null)
@@ -36,7 +41,7 @@ export default function AIAgentsPage() {
             return <article key={agent.name} className="group flex min-h-[270px] flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
               <div className="flex items-start justify-between gap-4">
                 <div className={`flex size-11 items-center justify-center rounded-xl ${agentIconTiles[agent.category]}`}><Icon aria-hidden="true" /></div>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600"><span className="size-2 rounded-full bg-emerald-500" />Active</span>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600"><span className="size-2 rounded-full bg-emerald-500" />{activeUsersFor(agent.name)} active users</span>
               </div>
               <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{agent.category}</p>
               <h2 className="mt-1 line-clamp-2 text-xl font-bold text-foreground">{agent.name}</h2>
