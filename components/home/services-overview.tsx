@@ -8,14 +8,14 @@ import { Card, CardContent } from '@/components/ui/card'
 const services = [
   { title: 'Academic & Research Support', description: 'Clear, rigorous support for essays, research, analysis, and academic projects.', href: '/services/academic-writing', icon: BookOpen, image: '/tutor-1.jpg' },
   { title: 'Review & Reputation Management', description: 'Build trust, strengthen visibility, and turn customer feedback into growth.', href: '/services/reputation-management', icon: Star, image: '/service-digital-marketing.png' },
+  { title: 'AI Agents & Automation', description: 'Hire AI agents that answer calls, manage reviews, and run your back-office — no code required.', href: '/services/ai-agents', icon: Zap, image: '/service-ai-agents.png' },
   { title: 'AI Data & Model Support', description: 'High-quality data preparation, annotation, evaluation, and model support.', href: '/services/ai-data', icon: BrainCircuit, image: '/service-ai-data.png' },
-  { title: 'Web Design & Development', description: 'Fast, accessible digital experiences designed around your goals.', href: '/services/web-development', icon: Code2, image: '/service-data-analytics.png' },
+  { title: 'Web Design & Development', description: 'Fast, accessible digital experiences designed around your goals.', href: '/services/web-development', icon: Code2, image: '/service-web-development.png' },
   { title: 'Digital Marketing', description: 'Strategic campaigns that connect your brand with the right audience.', href: '/services/digital-marketing', icon: Megaphone, image: '/service-digital-marketing.png' },
   { title: 'Branding & Creative', description: 'Distinctive identities and creative systems that make your business memorable.', href: '/services/branding', icon: Palette, image: '/tutor-2.jpg' },
   { title: 'Business Process Outsourcing', description: 'Reliable operational support that gives your team room to focus.', href: '/services/bpo', icon: Briefcase, image: '/tutor-3.jpg' },
   { title: 'Content & Publishing', description: 'Thoughtful writing and publishing support for every stage of your story.', href: '/services/content', icon: BookOpen, image: '/tutor-4.jpg' },
   { title: 'Data & Analytics', description: 'Turn complex information into practical decisions and measurable outcomes.', href: '/services/analytics', icon: BarChart3, image: '/service-data-analytics.png' },
-  { title: 'Technology & Automation', description: 'Connected systems and smarter workflows that reduce busywork.', href: '/services/technology', icon: Zap, image: '/service-ai-data.png' },
 ]
 
 export default function ServicesOverview() {
