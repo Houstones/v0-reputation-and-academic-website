@@ -15,7 +15,7 @@ const services = [
   { title: 'Business Process Outsourcing', description: 'Reliable operational support that gives your team room to focus.', href: '/services/bpo', icon: Briefcase, image: '/tutor-3.jpg' },
   { title: 'Content & Publishing', description: 'Thoughtful writing and publishing support for every stage of your story.', href: '/services/content', icon: BookOpen, image: '/tutor-4.jpg' },
   { title: 'Data & Analytics', description: 'Turn complex information into practical decisions and measurable outcomes.', href: '/services/analytics', icon: BarChart3, image: '/service-data-analytics.png' },
-  { title: 'Technology & Automation', description: 'Connected systems and smarter workflows that reduce busywork.', href: '/services/technology', icon: Zap, image: '/service-ai-data.png' },
+  { title: 'AI Agents & Automation', description: 'Hire AI agents that answer calls, manage reviews, and run your back-office — no code required.', href: '/services/ai-agents', icon: Zap, image: '/service-ai-data.png' },
 ]
 
 export default function ServicesOverview() {

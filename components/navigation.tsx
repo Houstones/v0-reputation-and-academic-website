@@ -13,6 +13,7 @@ const Navigation = () => {
   const serviceItems = [
     { name: 'Academic & Research Support', href: '/services/academic-writing' },
     { name: 'Review & Reputation Management', href: '/services/reputation-management' },
+    { name: 'AI Agents & Automation', href: '/services/ai-agents' },
     { name: 'AI & Data Solutions', href: '/services/ai-data' },
     { name: 'Web Development', href: '/services/web-development' },
     { name: 'Digital Marketing', href: '/services/digital-marketing' },

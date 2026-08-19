@@ -139,6 +139,7 @@ export default function ContactPage() {
                   <option value="">Select a service</option>
                   <option value="academic">Academic Writing</option>
                   <option value="reputation">Reputation Management</option>
+                  <option value="agents">AI Agents & Automation</option>
                   <option value="ai">AI Data Solutions</option>
                   <option value="web">Web Development</option>
                   <option value="marketing">Digital Marketing</option>
