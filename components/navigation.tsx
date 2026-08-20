@@ -80,6 +80,9 @@ const Navigation = () => {
                 ))}
               </div>
             </div>
+            <Link href="/blog" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+              Blog
+            </Link>
             <Link href="/contact" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
               Contact
             </Link>
@@ -122,6 +125,9 @@ const Navigation = () => {
                 </Link>
               ))}
             </div>
+            <Link href="/blog" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+              Blog
+            </Link>
             <Link href="/contact" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
               Contact
             </Link>
