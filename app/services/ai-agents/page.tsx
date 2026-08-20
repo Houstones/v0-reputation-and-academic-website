@@ -19,14 +19,13 @@ export default function AIAgentsPage() {
 
   return (
     <main className="bg-background">
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-primary text-primary-foreground sm:min-h-[600px] md:min-h-[680px]">
-        <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zF3sXAPZhq2o46Q5MA0tvfNQpKsV3W.png" alt="AI automation workflow with connected nodes and an automated email reply on a computer" fill priority sizes="100vw" className="object-cover object-top" />
-        <div className="absolute inset-0 bg-primary/35" />
-        <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col justify-start gap-5 px-6 py-20 sm:min-h-[600px] md:min-h-[680px] md:px-10 md:py-28 lg:px-16">
-          <p className="flex w-fit items-center gap-2 rounded-md bg-primary/35 px-3 py-1 text-sm font-semibold uppercase tracking-[0.18em] text-accent drop-shadow-sm"><span aria-hidden="true">✣</span> Remote Minds Solutions</p>
-          <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-primary-foreground drop-shadow-[0_2px_3px_rgba(0,0,0,0.55)] sm:text-5xl md:text-7xl">AI Agents &amp; Automation</h1>
-          <p className="max-w-2xl text-pretty text-lg leading-8 text-primary-foreground drop-shadow-[0_2px_3px_rgba(0,0,0,0.55)] md:text-2xl">Smarter workflows. Instant responses. Happier customers.</p>
-          <div className="flex flex-wrap gap-3 pt-3"><a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-secondary px-5 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"><MessageCircle className="size-5" /> WhatsApp</a><a href="https://www.instagram.com/remote_minds?igsh=MWxpMWhhNmlxOHprbQ==" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"><Instagram className="size-5" /> Instagram</a></div>
+      <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
+        <div className="absolute inset-0 -z-10"><Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zF3sXAPZhq2o46Q5MA0tvfNQpKsV3W.png" alt="AI automation workflow with connected nodes and an automated email reply on a computer" fill priority className="object-cover object-top opacity-75" sizes="(max-width: 768px) 100vw, 1280px" /><div className="absolute inset-0 bg-primary/45" /></div>
+        <div className="mx-auto flex min-h-[500px] max-w-7xl flex-col justify-center gap-6 px-4 py-20 sm:px-6 md:min-h-[600px] lg:px-8">
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent"><span aria-hidden="true">✣</span> Remote Minds Solutions</p>
+          <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">AI Agents &amp; Automation</h1>
+          <p className="max-w-2xl text-lg leading-8 text-primary-foreground/85">Smarter workflows. Instant responses. Happier customers.</p>
+          <div className="flex flex-wrap gap-3 pt-2"><a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-secondary px-5 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"><MessageCircle className="size-5" /> WhatsApp</a><a href="https://www.instagram.com/remote_minds?igsh=MWxpMWhhNmlxOHprbQ==" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"><Instagram className="size-5" /> Instagram</a></div>
         </div>
       </section>
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 lg:px-8">
