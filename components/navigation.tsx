@@ -31,7 +31,7 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b border-primary/10">
+    <nav className="sticky top-0 z-50 border-b border-accent/30 bg-header/90 text-header-foreground shadow-sm backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-20 items-center justify-between gap-4 py-3 md:min-h-24 md:py-0">
           <Link href="/" className="flex min-w-0 items-center gap-3 transition-opacity hover:opacity-80">
@@ -40,27 +40,27 @@ const Navigation = () => {
               alt="Remote Minds Solutions"
               width={60}
               height={60}
-              className="size-12 shrink-0 object-contain sm:size-14"
+              className="size-12 shrink-0 object-contain transition-[filter] sm:size-14 dark:brightness-90 dark:contrast-125 dark:invert"
               priority
             />
             <div className="min-w-0">
-              <div className="truncate text-xl font-bold leading-tight text-primary sm:text-2xl md:text-3xl">Remote Minds</div>
+              <div className="truncate text-xl font-bold leading-tight text-header-foreground sm:text-2xl md:text-3xl">Remote Minds</div>
               <div className="text-sm font-bold text-accent sm:text-base">Solutions</div>
             </div>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden items-center gap-12 md:flex">
-            <Link href="/" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-header-foreground transition-colors hover:text-primary">
               Home
             </Link>
-            <Link href="/about" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/about" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-header-foreground transition-colors hover:text-primary">
               About Us
             </Link>
             <div className="group relative">
               <button
                 type="button"
-                className="inline-flex items-center gap-1 text-base font-semibold text-foreground transition-colors hover:text-primary"
+                className="inline-flex items-center gap-1 text-base font-semibold text-header-foreground transition-colors hover:text-primary"
                 aria-haspopup="true"
                 aria-expanded={servicesOpen}
                 onClick={() => setServicesOpen((open) => !open)}
@@ -80,10 +80,10 @@ const Navigation = () => {
                 ))}
               </div>
             </div>
-            <Link href="/blog" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/blog" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-header-foreground transition-colors hover:text-primary">
               Blog
             </Link>
-            <Link href="/contact" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-foreground transition-colors hover:text-primary">
+            <Link href="/contact" onClick={() => setServicesOpen(false)} className="text-base font-semibold text-header-foreground transition-colors hover:text-primary">
               Contact
             </Link>
             <ThemeToggle />
@@ -108,7 +108,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary"
+                className="block py-3 text-base font-semibold text-header-foreground transition-colors hover:text-primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -125,10 +125,10 @@ const Navigation = () => {
                 </Link>
               ))}
             </div>
-            <Link href="/blog" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/blog" className="block py-3 text-base font-semibold text-header-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
               Blog
             </Link>
-            <Link href="/contact" className="block py-3 text-base font-semibold text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/contact" className="block py-3 text-base font-semibold text-header-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
               Contact
             </Link>
             <div className="flex items-center justify-between border-t border-border pt-3">
