@@ -40,7 +40,7 @@ const Navigation = () => {
               alt="Remote Minds Solutions"
               width={60}
               height={60}
-              className="size-12 shrink-0 object-contain transition-[filter] sm:size-14 dark:brightness-90 dark:contrast-125 dark:invert"
+              className="size-12 shrink-0 object-contain mix-blend-multiply transition-[filter] sm:size-14 dark:mix-blend-normal dark:brightness-90 dark:contrast-125 dark:invert"
               priority
             />
             <div className="min-w-0">
