@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowDownRight, BarChart3, CalendarDays, CircleUserRound, TrendingUp } from 'lucide-react'
-import { blogPosts, adoptionStages, cancellationReasons, postIntro, sections, useCases } from '@/lib/blog'
+import { analyticsGrowth, analyticsMarket, analyticsSegments, blogPosts, adoptionStages, cancellationReasons, postIntro, sections, useCases } from '@/lib/blog'
 
 export function generateStaticParams() { return blogPosts.map((post) => ({ slug: post.slug })) }
 
@@ -16,6 +16,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ slug: 
   const { slug } = await params
   const post = blogPosts.find((item) => item.slug === slug)
   if (!post) notFound()
+  if (slug === 'data-analytics-business-operations') return <AnalyticsStory post={post} />
   return <main className="bg-background"><article className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-10 lg:py-16">
     <header className="mx-auto max-w-5xl border-b border-border pb-10 text-center"><p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{post.category}</p><h1 className="mt-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl">{post.title}</h1><p className="mx-auto mt-6 max-w-3xl text-xl leading-9 text-muted-foreground">{post.excerpt}</p><p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground"><CircleUserRound className="size-4" /> By <span className="font-semibold text-foreground">{post.author}</span><span aria-hidden="true">·</span><CalendarDays className="size-4" />{post.date}</p></header>
     <div className="relative mx-auto mt-10 aspect-[16/6] max-w-6xl overflow-hidden rounded-3xl"><Image src={post.cover} alt="Agentic AI adoption data visualization" fill priority sizes="(max-width: 896px) 100vw, 1200px" className="object-cover object-top" /></div>

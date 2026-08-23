@@ -1,4 +1,12 @@
 export const blogPosts = [{
+  slug: 'data-analytics-business-operations',
+  title: 'Why Data Analytics Matters: Inside the $465 Billion Boom Reshaping American Business',
+  excerpt: "The US data analytics market is set to grow more than 10x by 2035. Here's what that growth means, where it's coming from, and why businesses that wait are already behind.",
+  category: 'Market Data · 2026',
+  date: 'August 21, 2026',
+  author: 'Houston',
+  cover: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TmiZ2nALrTIAAZArWV95SwC9E7RmVT.png',
+}, {
   slug: 'agentic-ai-adoption-2026',
   title: 'Agentic AI Adoption in 2026: What the Data Says About Where Your Business Stands',
   excerpt: 'A look at how fast companies are deploying autonomous AI agents, where the real business impact is showing up first, and why so many projects still stall before they scale.',
