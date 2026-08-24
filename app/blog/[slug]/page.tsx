@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowDownRight, BarChart3, CalendarDays, CircleUserRound, TrendingUp } from 'lucide-react'
 import { analyticsGrowth, analyticsMarket, analyticsSegments, blogPosts, adoptionStages, cancellationReasons, postIntro, sections, useCases } from '@/lib/blog'
+import { BreadcrumbSchema, siteUrl } from '@/components/structured-data'
 
 export function generateStaticParams() { return blogPosts.map((post) => ({ slug: post.slug })) }
 
@@ -16,8 +17,8 @@ export default async function BlogArticle({ params }: { params: Promise<{ slug: 
   const { slug } = await params
   const post = blogPosts.find((item) => item.slug === slug)
   if (!post) notFound()
-  if (slug === 'data-analytics-business-operations') return <AnalyticsStory post={post} />
-  return <main className="bg-background"><article className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-10 lg:py-16">
+  if (slug === 'data-analytics-business-operations') return <><BreadcrumbSchema items={[{ name: 'Home', url: siteUrl }, { name: 'Blog', url: `${siteUrl}/blog` }, { name: post.title, url: `${siteUrl}/blog/${slug}` }]} /><AnalyticsStory post={post} /></>
+  return <><BreadcrumbSchema items={[{ name: 'Home', url: siteUrl }, { name: 'Blog', url: `${siteUrl}/blog` }, { name: post.title, url: `${siteUrl}/blog/${slug}` }]} /><main className="bg-background"><article className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-10 lg:py-16">
     <header className="mx-auto max-w-5xl border-b border-border pb-10 text-center"><p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{post.category}</p><h1 className="mt-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl">{post.title}</h1><p className="mx-auto mt-6 max-w-3xl text-xl leading-9 text-muted-foreground">{post.excerpt}</p><p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground"><CircleUserRound className="size-4" /> By <span className="font-semibold text-foreground">{post.author}</span><span aria-hidden="true">·</span><CalendarDays className="size-4" />{post.date}</p></header>
     <div className="relative mx-auto mt-10 aspect-[16/6] max-w-6xl overflow-hidden rounded-3xl"><Image src={post.cover} alt="Agentic AI adoption data visualization" fill priority sizes="(max-width: 896px) 100vw, 1200px" className="object-cover object-top" /></div>
     <div className="mt-12 grid gap-10 lg:grid-cols-[160px_minmax(0,1fr)_250px] lg:items-start">
@@ -32,7 +33,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ slug: 
       </div>
       <aside className="space-y-4 lg:sticky lg:top-24"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Key signals</p><Highlight value="82%" label="Customer conversations handled autonomously" /><Highlight value="40%+" label="Projects projected to be cancelled by 2027" tone="accent" /><div className="rounded-2xl border border-border bg-card p-5"><p className="text-sm font-semibold">Read with context</p><p className="mt-2 text-sm leading-6 text-muted-foreground">Adoption is rising, but maturity and preparation are what separate pilots from durable results.</p><ArrowDownRight className="mt-5 size-5 text-primary" /></div></aside>
     </div>
-  </article></main>
+  </article></main></>
 }
 
 function SectionTitle({ index, title }: { index: string; title: string }) { return <div className="flex items-start gap-4 border-t-2 border-primary pt-4"><span className="font-mono text-sm font-bold text-accent">{index}</span><h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">{title}</h2></div> }
