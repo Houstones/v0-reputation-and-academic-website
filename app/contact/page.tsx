@@ -4,10 +4,19 @@ import { Mail, MessageCircle, Instagram, MapPin, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { StructuredData } from '@/components/structured-data'
 
 export default function ContactPage() {
+  const faqs = [
+    ['What is your response time?', 'We typically respond to all inquiries within 24 hours. For urgent matters, contact us via WhatsApp for immediate assistance.'],
+    ['Do you offer customized solutions?', 'Absolutely! All our services can be tailored to meet your specific needs. Contact us to discuss your requirements.'],
+    ['What payment methods do you accept?', 'We accept all major payment methods including credit cards, bank transfers, and digital payment platforms.'],
+    ['Can you work with my timezone?', 'Yes, we are a global team and can work across all timezones. We will coordinate the best time for your project.'],
+  ] as const
+  const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) }
   return (
     <div className="w-full">
+      <StructuredData data={faqSchema} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary via-blue-600 to-primary/90 text-primary-foreground py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

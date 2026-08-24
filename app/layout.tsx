@@ -6,6 +6,7 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { ThemeProvider } from '@/components/theme-provider'
+import { StructuredData, organizationSchema } from '@/components/structured-data'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en" className="bg-background" suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <StructuredData data={organizationSchema} />
           <Navigation />
           {children}
           <Footer />

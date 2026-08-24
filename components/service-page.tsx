@@ -3,10 +3,13 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, MessageCircle, Instagram, Sparkles, Users, Workflow } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { ServiceContent } from '@/lib/service-content'
+import { BreadcrumbSchema, siteUrl } from '@/components/structured-data'
 
 export default function ServicePage({ service }: { service: ServiceContent }) {
+  const serviceSlug = service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', url: siteUrl }, { name: 'Services', url: `${siteUrl}/services` }, { name: service.title, url: `${siteUrl}/services/${serviceSlug}` }]} />
       <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 -z-10"><Image src={service.image} alt="" fill priority className="object-cover object-top opacity-75" sizes="(max-width: 768px) 100vw, 1280px" /><div className="absolute inset-0 bg-primary/45" /></div>
         <div className="mx-auto flex min-h-[500px] max-w-7xl flex-col justify-center gap-6 px-4 py-20 sm:px-6 md:min-h-[600px] lg:px-8">
